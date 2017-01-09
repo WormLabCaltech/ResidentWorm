@@ -176,6 +176,7 @@ def preference_index(mp4filename, csvfilename, pngplot, Q1x, Q1y, Q2x, Q2y,
     
     ylabels = ['Exp','Ctrl']
     ax.set_yticklabels(ylabels)
+    ax.tick_params(axis='y', labelsize=15)
     
     ax.xaxis.set_ticks(np.arange(0, count, 60))
     xlabels = [str(x//60) for x in range(0, count+1, 60)]
