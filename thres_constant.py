@@ -31,13 +31,19 @@ def threshold_constant( filename, frames, constant):
     success,image = vidcap.read() 
     
     count = 0; 
-                                                     
+              
+    # sequentially show thresholded video frames in new window                                       
     while count < frames:    
         success,image = vidcap.read() 
+        
+        # convert RGB images to grayscale 
         img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        
+        # convert image to black (background) and white (worms)
         img = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,
                                     cv2.THRESH_BINARY_INV,11,constant)
         
+        # show thresholded video frame 
         cv2.imshow('img', img) 
         cv2.waitKey(0)
         cv2.destroyAllWindows()
