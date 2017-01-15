@@ -5,7 +5,7 @@ Created on Sat Jan 14 21:57:28 2017
 @author: Cynthia
 """
 
-def threshold_constant( filename, frames, constant):
+def threshold_constant( mp4filename, frames, constant):
     """
     
     Function accepts an mp4 video file and outputs a specified number of 
@@ -13,7 +13,7 @@ def threshold_constant( filename, frames, constant):
     changing the 'constant' parameter.
     
     Parameters:
-        mp4filename: name of video file 
+        mp4filename: name of video file (include quotation marks)
         frames: number of video frames to be viewed (enter a number from 1 to 
                 number of frames in video)
         constant: constant value subtracted from threshold value 
@@ -27,7 +27,7 @@ def threshold_constant( filename, frames, constant):
     
     import cv2
     
-    vidcap = cv2.VideoCapture(filename)          
+    vidcap = cv2.VideoCapture(mp4filename)          
     success,image = vidcap.read() 
     
     count = 0; 

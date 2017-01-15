@@ -11,7 +11,7 @@ def calibration(mp4filename, Q1x, Q1y, Q2x, Q2y, Q3x, Q3y, Q4x, Q4y, rad):
     two diagonally opposing quadrants. 
     
     Parameters:
-        mp4filename: name of calibration video file 
+        mp4filename: name of calibration video file (include quotation marks)
         Q1x: x-pixel value for upper left quadrant center 
         Q1y: y-pixel value for upper left quadrant center 
         Q2x: x-pixel value for upper right quadrant center 

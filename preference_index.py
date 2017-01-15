@@ -17,9 +17,9 @@ def preference_index(mp4filename, csvfilename, pngplot, Q1x, Q1y, Q2x, Q2y,
     figure.
     
     Parameters:
-        mp4filename: name of mp4 video file 
-        csvfilename: name of csv output file
-        pngplot: name of worm occupancy plot 
+        mp4filename: name of mp4 video file (include quotation marks)
+        csvfilename: name of csv output file (include quotation marks)
+        pngplot: name of worm occupancy plot (include quotation marks)
         Q1x: x-pixel value for upper left quadrant center 
         Q1y: y-pixel value for upper left quadrant center 
         Q2x: x-pixel value for upper right quadrant center 
