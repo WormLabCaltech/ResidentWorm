@@ -4,7 +4,7 @@ Created on Mon Dec 12 16:28:13 2016
 
 @author: Cynthia
 """
-def calibration(mp4filename, rad, Q1x, Q1y, Q2x, Q2y, Q3x, Q3y, Q4x, Q4y):
+def calibration(mp4filename, Q1x, Q1y, Q2x, Q2y, Q3x, Q3y, Q4x, Q4y, rad):
     """
     Function accepts an mp4 video file and fits quadrant-shaped masks to the 
     first video frame. Control and Experimental ROI masks are each made up of 
@@ -12,7 +12,6 @@ def calibration(mp4filename, rad, Q1x, Q1y, Q2x, Q2y, Q3x, Q3y, Q4x, Q4y):
     
     Parameters:
         mp4filename: name of calibration video file 
-        rad: radius of quadrant (circle)
         Q1x: x-pixel value for upper left quadrant center 
         Q1y: y-pixel value for upper left quadrant center 
         Q2x: x-pixel value for upper right quadrant center 
@@ -21,6 +20,7 @@ def calibration(mp4filename, rad, Q1x, Q1y, Q2x, Q2y, Q3x, Q3y, Q4x, Q4y):
         Q3y: y-pixel value for lower left quadrant center 
         Q4x: x-pixel value for lower right quadrant center 
         Q4y: y-pixel value for lower right quadrant center 
+        rad: radius of quadrant (circle)
     
     Output:
         New Window (press any key to move through the following windows):
