@@ -4,7 +4,7 @@ Created on Mon Dec 12 16:28:13 2016
 
 @author: Cynthia
 """
-def calib_frame(mp4filename, rad, Q1x, Q1y, Q2x, Q2y, Q3x, Q3y, Q4x, Q4y):
+def calibration(mp4filename, rad, Q1x, Q1y, Q2x, Q2y, Q3x, Q3y, Q4x, Q4y):
     """
     Function accepts an mp4 video file and fits quadrant-shaped masks to the 
     first video frame. Control and Experimental ROI masks are each made up of 
