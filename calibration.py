@@ -12,7 +12,7 @@ def calibration(mp4filename, rad, Q1x, Q1y, Q2x, Q2y, Q3x, Q3y, Q4x, Q4y):
     
     Parameters:
         mp4filename: name of calibration video file 
-        rad: 
+        rad: radius of quadrant (circle)
         Q1x: x-pixel value for upper left quadrant center 
         Q1y: y-pixel value for upper left quadrant center 
         Q2x: x-pixel value for upper right quadrant center 
