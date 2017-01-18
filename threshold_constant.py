@@ -5,7 +5,7 @@ Created on Sat Jan 14 21:57:28 2017
 @author: Cynthia
 """
 
-def threshold_constant( mp4filename, frames, constant):
+def threshold_constant(mp4filename, frames, constant):
     """
     
     Function accepts an mp4 video file and outputs a specified number of 

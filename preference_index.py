@@ -103,9 +103,6 @@ def preference_index(mp4filename, csvfilename, pngplot, Q1x, Q1y, Q2x, Q2y,
         roi_ctrl = img & mask_ctrl                                                                     
         roi_exp = img & mask_exp 
         
-        # assign variables to pixel width and length of video frame
-        y_pix, x_pix = img.shape 
-        
         # count number of white (worm) pixels in ctrl ROI
         count_ctrl = 0                                                          
         for i in range(Q1y-(rad+10), Q4y+(rad+10)):          
