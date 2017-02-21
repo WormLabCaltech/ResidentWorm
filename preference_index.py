@@ -31,7 +31,7 @@ def preference_index(mp4filename, csvfilename, pngplot, Q1x, Q1y, Q2x, Q2y,
         rad: radius of circle quadrant
         ROI_size: total number of pixels in each ROI 
                 (equivalent for control and experimental ROIs)
-        constant: thresholding constant (5-7 recommended)
+        constant: thresholding constant (3-4 recommended)
          
     Output:
         csv file: records worm pixel values in each ROI and preference index 
@@ -94,14 +94,17 @@ def preference_index(mp4filename, csvfilename, pngplot, Q1x, Q1y, Q2x, Q2y,
         
         # convert RGB images to grayscale 
         img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  
-                        
+        
+        # apply median filter to minimize salt and pepper noise
+        blur = cv2.medianBlur(img, 5)
+        
         # convert image to black (background) and white (worms)
-        img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, 
+        thres_img = cv2.adaptiveThreshold(blur, 255, cv2.ADAPTIVE_THRESH_MEAN_C, 
                                     cv2.THRESH_BINARY_INV, 11, constant) 
         
         # sequentially apply masks to each image                                                                       
-        roi_ctrl = img & mask_ctrl                                                                     
-        roi_exp = img & mask_exp 
+        roi_ctrl = thres_img & mask_ctrl                                                                     
+        roi_exp = thres_img & mask_exp 
         
         # count number of white (worm) pixels in ctrl ROI
         count_ctrl = 0                                                          
