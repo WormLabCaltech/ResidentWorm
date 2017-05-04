@@ -17,7 +17,7 @@ def threshold_constant(mp4filename, frames, constant):
         frames: number of video frames to be viewed (enter a number from 1 to 
                 number of frames in video)
         constant: constant value subtracted from threshold value 
-                  (5-7 recommended)
+                  (3-4 recommended)
        
     Output:
         New window(s) showing thresholded video frame(s). Hit any key to view 
@@ -39,12 +39,15 @@ def threshold_constant(mp4filename, frames, constant):
         # convert RGB images to grayscale 
         img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         
+        # apply median filter to minimize salt and pepper noise
+        blur = cv2.medianBlur(img, 5)
+        
         # convert image to black (background) and white (worms)
-        img = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,
+        thres_img = cv2.adaptiveThreshold(blur,255,cv2.ADAPTIVE_THRESH_MEAN_C,
                                     cv2.THRESH_BINARY_INV,11,constant)
         
         # show thresholded video frame 
-        cv2.imshow('img', img) 
+        cv2.imshow('img', thres_img) 
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         

@@ -134,14 +134,18 @@ def preference_index(mp4filename, csvfilename, pngplot, Q1x, Q1y, Q2x, Q2y,
     # calculate percentage occupancy in both ROIs for each frame
     occ_ctrl = [(a/count_mask_ctrl)*100 for a in pix_count_ctrl]                
     occ_exp = [(b/count_mask_exp)*100 for b in pix_count_exp]
-    
-    # calculate chemotaxis index for each frame 
-    pi = []                                                                     
+
+    # calculate preference index (PI) for each video frame
+    # if index equation denominator is zero, indicate NaN
+    pi_frame = []                                     
     for i in range (len(occ_ctrl)):
-        pi.append(((occ_exp[i] - occ_ctrl[i]) / (occ_exp[i] + occ_ctrl[i])))
-    
-    # calculate preference index for video
-    pi_vid = np.mean(pi)                                                        
+        if occ_exp[i] + occ_ctrl[i] != 0:
+            pi_frame.append(((occ_exp[i] - occ_ctrl[i]) / 
+                            (occ_exp[i] + occ_ctrl[i])))
+        else:
+            pi_frame.append(np.nan)
+            
+    pi_vid = [np.nanmean(pi_frame)]
            
     ## Generate csv output file                                    
     # generate dataframes                              
@@ -149,10 +153,11 @@ def preference_index(mp4filename, csvfilename, pngplot, Q1x, Q1y, Q2x, Q2y,
     df2 = pd.DataFrame(pix_count_exp, columns = ['Worm Pixels in Exp'])
     df3 = pd.DataFrame(occ_ctrl, columns = ['% Occupancy in Crtl'])      
     df4 = pd.DataFrame(occ_exp, columns = ['% Occupancy in Exp'])
-    df5 = pd.DataFrame(pi, columns = ['PI per Frame'])
+    df5 = pd.DataFrame(pi_frame, columns = ['PI per Frame'])
+    df6 = pd.DataFrame(pi_vid, columns = ['PI Video'])
     
     # concatenate dfs into result datasheet
-    frames = [df1, df2, df3, df4, df5]                               
+    frames = [df1, df2, df3, df4, df5, df6]                               
     result = pd.concat(frames, axis=1)
     result.to_csv(csvfilename)
     
@@ -184,7 +189,7 @@ def preference_index(mp4filename, csvfilename, pngplot, Q1x, Q1y, Q2x, Q2y,
     
     plt.ylabel('ROI', fontsize = 14, fontweight = 'bold')
     plt.xlabel('Time (min)', fontsize = 14, fontweight = 'bold')
-    plt.title('PI = %s'%(pi_vid), fontsize = 18, fontweight = 'bold')
+    plt.title('PI = %s'%(pi_vid[0]), fontsize = 18, fontweight = 'bold')
     
     fig.savefig(pngplot)
     plt.close(fig)
